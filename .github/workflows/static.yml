@@ -41,5 +41,4 @@ jobs:
             done
 
           # Output the array as a JSON string
-            echo "::set-output name=gif_urls::$(echo ${gif_urls[@]} | jq -R -s 'split(" ")')"  
-
+          echo "GIF_URLS=${gif_urls[@]}" >> $GITHUB_ENV
