@@ -24,9 +24,6 @@ concurrency:
 jobs:
   # Single deploy job since we're just deploying
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Download Files and Get Paths
@@ -35,7 +32,7 @@ jobs:
           gif_urls=()
 
           # Get the list of GIF files in the img directory
-          files=$(curl -sSL -H "Authorization: token ${{ secrets.RESOURCE_TOKEN }}" "https://api.github.com/repos/USERNAME/REPOSITORY/contents/img" | jq -r '.[] | select(.type == "file" and .name | endswith(".gif")) | .download_url')
+          files=$(curl -sSL -H "Authorization: token ${{ secrets.RESOURCE_TOKEN }}" "https://api.github.com/repos/HKEYLOCALMACHINE/img" | jq -r '.[] | select(.type == "file" and .name | endswith(".gif")) | .download_url')
 
           # Loop to download and store URLs of all GIFs in the img directory
           for file_url in $files; do
