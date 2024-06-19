@@ -36,9 +36,10 @@ jobs:
 
           for file_url in $files; do
             response=$(curl -sSL -H "Authorization: token ${{ secrets.RESOURCE_TOKEN }}" -o $(basename $file_url) -w "%{url_effective}" $file_url)
+            echo "$response"
             gif_urls+=("$response")
             done
-
-          - name: Display GIF URLs
-            run: echo "GIF URLs: $GIF_URLS"
+          echo "GIF_URLS=${gif_urls[@]}" >> $GITHUB_ENV
+          echo "GIF URLs: ${{ env.GIF_URLS }}"
+       
 
