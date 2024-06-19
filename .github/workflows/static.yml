@@ -30,7 +30,7 @@ jobs:
           gif_urls=()
 
           # Get the list of GIF files in the img directory
-          files=$(curl "https://api.github.com/repos/HKEYLOCALMACHINE/img"  -H "Authorization: token ${{ secrets.RESOURCE_TOKEN }}"  | jq -r '.[] | select(.type? == "file" and (.name | endswith(".gif"))) | .download_url')
+          files=$(curl "https://api.github.com/repos/HKEYLOCALMACHINE/img/contents"  -H "Authorization: token ${{ secrets.RESOURCE_TOKEN }}"  | jq -r '.[] | select(.type? == "file" and (.name | endswith(".gif"))) | .download_url')
           echo "$files"
 
           # FAILING HERE curl 
